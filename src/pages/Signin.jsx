@@ -50,47 +50,52 @@ const Signin = () => {
   };
 
   return (
-    <Form
-      className="w-1/2 flex flex-col gap-2"
-      text="Registrarse"
-      handleClick={() =>
-        sigIn(
-          inputUser.current.value,
-          inputEmail.current.value,
-          inputPassword.current.value
-        )
-      }
-    >
-      <div>
-        <label htmlFor="name">Nombre de usuario:</label>
-        <Input
-          inputRef={inputUser}
-          id="name"
-          type="text"
-          placeholder="L.Ryuzaki"
-        />
-        <p className="text-gray-500 text-sm">Solo letras, números . y _</p>
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="w-1/2">
+        <p className="flex justify-center font-bold text-xl">Registro</p>
+        <Form
+          className="flex flex-col gap-2"
+          text="Registrarse"
+          handleClick={() =>
+            sigIn(
+              inputUser.current.value,
+              inputEmail.current.value,
+              inputPassword.current.value
+            )
+          }
+        >
+          <div>
+            <label htmlFor="name">Nombre de usuario:</label>
+            <Input
+              inputRef={inputUser}
+              id="name"
+              type="text"
+              placeholder="L.Ryuzaki"
+            />
+            <p className="text-gray-500 text-sm">Solo letras, números . y _</p>
+          </div>
+          <div>
+            <label htmlFor="email">Correo:</label>
+            <Input
+              inputRef={inputEmail}
+              id="email"
+              type="email"
+              placeholder="correo@hotmail.com"
+            />
+          </div>
+          <div>
+            <label htmlFor="password">Contraseña:</label>
+            <Input
+              inputRef={inputPassword}
+              id="password"
+              type="password"
+              placeholder="••••••••"
+            />
+          </div>
+          <p className="h-6 flex items-center text-red-700 text-sm">{msj}</p>
+        </Form>
       </div>
-      <div>
-        <label htmlFor="email">Correo:</label>
-        <Input
-          inputRef={inputEmail}
-          id="email"
-          type="email"
-          placeholder="correo@hotmail.com"
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Contraseña:</label>
-        <Input
-          inputRef={inputPassword}
-          id="password"
-          type="password"
-          placeholder="••••••••"
-        />
-      </div>
-      <p className="h-6 text-red-700">{msj}</p>
-    </Form>
+    </div>
   );
 };
 
