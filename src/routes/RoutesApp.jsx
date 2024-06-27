@@ -4,7 +4,8 @@ import Login from "../pages/Login";
 import Home from "../pages/Home";
 import Pharmacy from "../pages/Pharmacy";
 import Glasses from "../pages/Glasses";
-import ErrorPage from "../pages/ErrorPage";
+import Page404 from "../pages/Page404";
+import Contact from "../pages/Contact";
 
 const RoutesApp = () => {
   return (
@@ -13,9 +14,10 @@ const RoutesApp = () => {
       <Route path="/signin" element={<Signin />} />
       <Route path="/login" element={<Login />} />
       <Route path="/home" element={<Home />} />
+      <Route path="/contact" element={<Contact />} />
       <Route path="/pharmacy" element={<Pharmacy />} />
       <Route path="/glasses" element={<Glasses />} />
-      <Route path="*" element={<ErrorPage />} />
+      <Route path="*" element={<Page404 />} />
     </Routes>
   );
 };

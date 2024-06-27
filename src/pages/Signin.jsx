@@ -3,7 +3,7 @@ import Form from "../components/Form";
 import Input from "../components/ui/Input";
 import { getData, postData } from "../services/fetch";
 import { validar } from "../utils/validaciones";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import uuid from "react-uuid";
 
 const Signin = () => {
@@ -52,7 +52,7 @@ const Signin = () => {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="w-1/2">
-        <p className="flex justify-center font-bold text-xl">Registro</p>
+        <p className="flex justify-center font-bold text-2xl">Registro</p>
         <Form
           className="flex flex-col gap-2"
           text="Registrarse"
@@ -94,6 +94,7 @@ const Signin = () => {
           </div>
           <p className="h-6 flex items-center text-red-700 text-sm">{msj}</p>
         </Form>
+        <Link className="h-12 flex justify-center items-center text-amber-600 font-semibold" to="/login">Inicie sesión</Link>
       </div>
     </div>
   );

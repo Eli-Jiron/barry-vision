@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import Form from "../components/Form";
 import Input from "../components/ui/Input";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { validar } from "../utils/validaciones";
 import { getData } from "../services/fetch";
 
@@ -42,7 +42,7 @@ const Login = () => {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="w-1/2">
-        <p className="flex justify-center font-bold text-xl">
+        <p className="flex justify-center font-bold text-2xl">
           Inicio de Sesión
         </p>
         <Form
@@ -72,6 +72,7 @@ const Login = () => {
           </div>
           <p className="h-6 flex items-center text-red-700 text-sm">{msj}</p>
         </Form>
+        <Link className="h-12 flex justify-center items-center text-amber-600 font-semibold" to="/signin">Registrese</Link>
       </div>
     </div>
   );
