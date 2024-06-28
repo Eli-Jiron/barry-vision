@@ -4,6 +4,7 @@ import Input from "../components/ui/Input";
 import { Link, useNavigate } from "react-router-dom";
 import { validar } from "../utils/validaciones";
 import { getData } from "../services/fetch";
+import { useNewContext } from "../context/ContextProvider.jsx";
 
 const Login = () => {
   ////////////////Variables////////////////
@@ -12,7 +13,7 @@ const Login = () => {
   const inputPassword = useRef();
   const apiUrl = "http://localhost:3000/users";
   const navigate = useNavigate();
-
+  const { setUpdate } = useNewContext();
   ////////////////Funciones////////////////
   const logIn = async (email, password) => {
     if (validar.vacio(email, password)) {
@@ -30,7 +31,8 @@ const Login = () => {
           (e) => e.email === email && e.password === password
         );
         if (data) {
-          sessionStorage.setItem("id", data.id);
+          sessionStorage.setItem("sessionId", data.id);
+          setUpdate(1);
           navigate("/");
         } else {
           setMsj("Correo o contraseña no coinciden");
@@ -72,7 +74,12 @@ const Login = () => {
           </div>
           <p className="h-6 flex items-center text-red-700 text-sm">{msj}</p>
         </Form>
-        <Link className="h-12 flex justify-center items-center text-amber-600 font-semibold" to="/signin">Registrese</Link>
+        <Link
+          className="h-12 flex justify-center items-center text-amber-600 font-semibold hover:text-amber-500"
+          to="/signin"
+        >
+          Registrese
+        </Link>
       </div>
     </div>
   );

@@ -4,8 +4,9 @@ import Login from "../pages/Login";
 import Home from "../pages/Home";
 import Pharmacy from "../pages/Pharmacy";
 import Glasses from "../pages/Glasses";
-import Page404 from "../pages/Page404";
 import Contact from "../pages/Contact";
+import About from "../pages/About";
+import Page404 from "../pages/Page404";
 
 const RoutesApp = () => {
   return (
@@ -13,7 +14,7 @@ const RoutesApp = () => {
       <Route path="/" element={<Home />} />
       <Route path="/signin" element={<Signin />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/home" element={<Home />} />
+      <Route path="/about-us" element={<About />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/pharmacy" element={<Pharmacy />} />
       <Route path="/glasses" element={<Glasses />} />

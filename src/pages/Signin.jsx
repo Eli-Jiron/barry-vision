@@ -94,7 +94,7 @@ const Signin = () => {
           </div>
           <p className="h-6 flex items-center text-red-700 text-sm">{msj}</p>
         </Form>
-        <Link className="h-12 flex justify-center items-center text-amber-600 font-semibold" to="/login">Inicie sesión</Link>
+        <Link className="h-12 flex justify-center items-center text-amber-600 font-semibold hover:text-amber-500" to="/login">Inicie sesión</Link>
       </div>
     </div>
   );
