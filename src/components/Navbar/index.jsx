@@ -1,32 +1,34 @@
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const hoverStyle =
+    "hover:text-light-green hover:border-b-light-green hover:border-b-2";
   return (
-    <nav>
+    <nav className="border-b-2 border-b-ice-blue ml-2 mr-2 h-8 drop-shadow-sm">
       <div>
-        <ul className="flex justify-center gap-5 text-slate-500 font-semibold">
+        <ul className="flex justify-center gap-5 font-semibold">
           <li>
-            <Link className="hover:text-amber-500 hover:border-b-amber-500 hover:border-b-2" to="/">
+            <Link className={hoverStyle} to="/">
               Inicio
             </Link>
           </li>
           <li>
-            <Link className="hover:text-amber-500 hover:border-b-amber-500 hover:border-b-2" to="/pharmacy">
+            <Link className={hoverStyle} to="/pharmacy">
               Farmacia
             </Link>
           </li>
           <li>
-            <Link className="hover:text-amber-500 hover:border-b-amber-500 hover:border-b-2" to="/glasses">
+            <Link className={hoverStyle} to="/glasses">
               Lentes
             </Link>
           </li>
           <li>
-            <Link className="hover:text-amber-500 hover:border-b-amber-500 hover:border-b-2" to="/about-us">
+            <Link className={hoverStyle} to="/about-us">
               Sobre nosotros
             </Link>
           </li>
           <li>
-            <Link className="hover:text-amber-500 hover:border-b-amber-500 hover:border-b-2" to="/contact">
+            <Link className={hoverStyle} to="/contact">
               Contactenos
             </Link>
           </li>

@@ -5,6 +5,7 @@ import { getData, postData } from "../services/fetch";
 import { validar } from "../utils/validaciones";
 import { Link, useNavigate } from "react-router-dom";
 import uuid from "react-uuid";
+import SectionTitle from "../components/ui/SectionTitle";
 
 const Signin = () => {
   ////////////////Variables////////////////
@@ -50,53 +51,65 @@ const Signin = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="w-1/2">
-        <p className="flex justify-center font-bold text-2xl">Registro</p>
-        <Form
-          className="flex flex-col gap-2"
-          text="Registrarse"
-          handleClick={() =>
-            sigIn(
-              inputUser.current.value,
-              inputEmail.current.value,
-              inputPassword.current.value
-            )
-          }
-        >
-          <div>
-            <label htmlFor="name">Nombre de usuario:</label>
-            <Input
-              inputRef={inputUser}
-              id="name"
-              type="text"
-              placeholder="L.Ryuzaki"
-            />
-            <p className="text-gray-500 text-sm">Solo letras, números . y _</p>
+    <main>
+      <SectionTitle txt="Ingresar" />
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="ring-1 rounded-lg ring-black">
+          <div className="px-6 py-10 mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
+            <p className="flex justify-center font-bold text-2xl">Registro</p>
+            <Form
+              className="flex flex-col gap-2"
+              text="Registrarse"
+              handleClick={() =>
+                sigIn(
+                  inputUser.current.value,
+                  inputEmail.current.value,
+                  inputPassword.current.value
+                )
+              }
+            >
+              <div>
+                <label htmlFor="name">Nombre de usuario:</label>
+                <Input
+                  inputRef={inputUser}
+                  id="name"
+                  type="text"
+                  placeholder="L.Ryuzaki"
+                />
+                <p className="text-light-blue text-sm">
+                  Solo letras, números . y _
+                </p>
+              </div>
+              <div>
+                <label htmlFor="email">Correo:</label>
+                <Input
+                  inputRef={inputEmail}
+                  id="email"
+                  type="email"
+                  placeholder="correo@hotmail.com"
+                />
+              </div>
+              <div>
+                <label htmlFor="password">Contraseña:</label>
+                <Input
+                  inputRef={inputPassword}
+                  id="password"
+                  type="password"
+                  placeholder="••••••••"
+                />
+              </div>
+              <p className="h-6 text-red text-sm">{msj}</p>
+            </Form>
+            <Link
+              className="h-12 flex justify-center items-center text-light-blue font-semibold"
+              to="/login"
+            >
+              Inicie sesión
+            </Link>
           </div>
-          <div>
-            <label htmlFor="email">Correo:</label>
-            <Input
-              inputRef={inputEmail}
-              id="email"
-              type="email"
-              placeholder="correo@hotmail.com"
-            />
-          </div>
-          <div>
-            <label htmlFor="password">Contraseña:</label>
-            <Input
-              inputRef={inputPassword}
-              id="password"
-              type="password"
-              placeholder="••••••••"
-            />
-          </div>
-          <p className="h-6 flex items-center text-red-700 text-sm">{msj}</p>
-        </Form>
-        <Link className="h-12 flex justify-center items-center text-amber-600 font-semibold hover:text-amber-500" to="/login">Inicie sesión</Link>
+        </div>
       </div>
-    </div>
+    </main>
   );
 };
 
