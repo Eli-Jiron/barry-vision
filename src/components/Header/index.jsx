@@ -1,4 +1,3 @@
-import Navbar from "../Navbar";
 import { useNewContext } from "../../context/ContextProvider";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -35,7 +34,6 @@ const Header = () => {
             )}
           </div>
         </div>
-        <Navbar />
       </header>
     </>
   );
