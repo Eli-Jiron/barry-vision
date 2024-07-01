@@ -22,12 +22,23 @@ const Contact = () => {
         </Form>
       </div>
 
-      <div className="w-2/5 min-h-full bg-slate-100">
+      <div className="w-1/3 min-h-full bg-slate-100">
+        <div>
+          <div>
+            <p>correo de contacto:</p>
+            <p>barryvision@hotmail.com</p>
+          </div>
+          <div>
+            <p>número de contacto:</p>
+            <p>+506 6009 5500</p>
+          </div>
+        </div>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam quo
-          quis deleniti corrupti, illo tempore porro non consequuntur beatae
-          blanditiis, provident exercitationem nulla, ut mollitia dolore. Odit
-          quam cumque laboriosam.
+          En nuestra farmacia, nos especializamos en ofrecer productos y
+          servicios que cuidan de tu salud y bienestar integral. Además de
+          contar con una amplia gama de medicamentos y productos de cuidado
+          personal, también ofrecemos servicios ópticos profesionales para
+          atender todas tus necesidades visuales.
         </p>
       </div>
     </div>
