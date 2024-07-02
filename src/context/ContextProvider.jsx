@@ -5,7 +5,7 @@ export const Context = createContext();
 export const useNewContext = () => useContext(Context);
 
 export const ContextProvider = ({ children }) => {
-  const [session, setSession] = useState(null);
+  const [session, setSession] = useState();
   const [update, setUpdate] = useState(0);
 
   useEffect(() => {

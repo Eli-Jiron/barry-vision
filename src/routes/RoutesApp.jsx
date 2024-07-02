@@ -7,6 +7,8 @@ import Glasses from "../pages/Glasses";
 import Contact from "../pages/Contact";
 import About from "../pages/About";
 import Page404 from "../pages/Page404";
+import PrivateRoutes from "./PrivateRoutes";
+import Admin from "../pages/Admin";
 
 const RoutesApp = () => {
   return (
@@ -18,6 +20,14 @@ const RoutesApp = () => {
       <Route path="/contact" element={<Contact />} />
       <Route path="/pharmacy" element={<Pharmacy />} />
       <Route path="/glasses" element={<Glasses />} />
+      <Route
+        path="/admin"
+        element={
+          <PrivateRoutes>
+            <Admin />
+          </PrivateRoutes>
+        }
+      />
       <Route path="*" element={<Page404 />} />
     </Routes>
   );
