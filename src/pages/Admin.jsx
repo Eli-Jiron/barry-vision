@@ -3,6 +3,7 @@ import Form from "../components/Form";
 import { useRef, useState } from "react";
 import { validar } from "../utils/validaciones";
 import { postData } from "../services/fetch";
+import uuid from "react-uuid";
 
 const Admin = () => {
   const inputName = useRef();
@@ -18,9 +19,10 @@ const Admin = () => {
     } else {
       const promise = await postData(apiUrl, {
         name: name,
-        description: info,
+        info: info,
         price: price,
         url: url,
+        id: uuid(),
       });
       if (!promise) {
         alert("Ha ocurrido un error, intentelo más tarde");
