@@ -4,7 +4,7 @@ const Navbar = () => {
   const hoverStyle =
     "hover:text-light-green hover:border-b-light-green hover:border-b-2";
   return (
-    <nav className="border-b-2 border-b-ice-blue ml-2 mr-2 h-8 drop-shadow-sm">
+    <nav className="border-b-2 border-b-ice-blue h-7 drop-shadow-sm">
       <div>
         <ul className="flex justify-center gap-5 font-semibold">
           <li>

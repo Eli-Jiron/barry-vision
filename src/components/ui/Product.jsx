@@ -1,13 +1,17 @@
 const Product = (props) => {
   return (
-    <li key={props.key}>
-      <div>
-        <div className="flex flex-col items-center gap-1">
-          <img className="w-24 md:w-32 lg:w-48 cursor-pointer hover:scale-105" src={props.url} alt={props.name} />
-          <div className="flex flex-col items-center">
-            <p className="font-bold">{props.name}</p>
-            <p className="font-semibold">{props.price}</p>
-          </div>
+    <li>
+      <div className="mx-auto px-5">
+        <div className="max-w-xs cursor-pointer rounded-lg bg-white p-2 shadow duration-150 hover:scale-105 hover:shadow-md">
+          <img
+            className="w-full rounded-lg object-cover object-center"
+            src={props.url}
+            alt="product"
+          />
+          <p className="my-4 pl-4 font-bold text-light-green">{props.name}</p>
+          <p className="mb-4 ml-4 text-xl font-semibold text-blue-gray-700">
+            ₡ {props.price}
+          </p>
         </div>
       </div>
     </li>
