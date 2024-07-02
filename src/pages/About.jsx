@@ -1,6 +1,8 @@
+import SectionTitle from "../components/ui/SectionTitle"
+
 const About = () => {
   return (
-    <div>About</div>
+    <SectionTitle txt="Sobre nosotros" />
   )
 }
 

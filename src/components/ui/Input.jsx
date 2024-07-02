@@ -5,7 +5,7 @@ const Input = (props) => {
     ref={props.inputRef}
     placeholder={props.placeholder}
     type={props.type}
-    className="block w-full py-0.5 rounded-sm border-0 ring-1 ring-slate-400 ring-inset focus:border-0 focus:ring-2 focus:ring-amber-400 focus:ring-inset focus:outline-none"
+    className="block w-full py-0.5 rounded-sm border-0 ring-2 ring-ice-blue ring-inset focus:border-0 focus:ring-3 focus:ring-blue-gray-100 focus:ring-inset focus:outline-none"
     />
   );
 };
