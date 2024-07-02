@@ -1,9 +1,5 @@
-import SectionTitle from "../components/ui/SectionTitle"
-
 const About = () => {
-  return (
-    <SectionTitle txt="Sobre nosotros" />
-  )
-}
+  return <div>about</div>;
+};
 
-export default About
+export default About;

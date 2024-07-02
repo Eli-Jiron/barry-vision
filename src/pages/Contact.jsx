@@ -1,11 +1,9 @@
 import Form from "../components/Form";
 import Input from "../components/ui/Input";
-import SectionTitle from "../components/ui/SectionTitle";
 
 const Contact = () => {
   return (
-    <main>
-      <SectionTitle txt="Contacto" />
+    <main className="m-4">
       <div className="min-h-screen flex items-center justify-around">
         <div className="w-2/5">
           <p className="flex justify-center font-semibold text-xl">

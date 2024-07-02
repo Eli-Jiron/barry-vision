@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Product from "../components/ui/Product";
 import { getData } from "../services/fetch";
-import SectionTitle from "../components/ui/SectionTitle";
 
 const Glasses = () => {
   const [products, setProducts] = useState([]);
@@ -11,8 +10,7 @@ const Glasses = () => {
   }, []);
 
   return (
-    <main>
-      <SectionTitle txt="Lentes" />
+    <main className="m-4">
       <ul className="flex justify-center flex-wrap gap-5">
         {products.map((e) => (
           <Product key={e.name} name={e.name} price={e.price} url={e.url} />
