@@ -1,13 +1,8 @@
-import { useEffect, useState } from "react";
-import { getData } from "../services/fetch";
 import Product from "../components/ui/Product";
+import { useNewContext } from "../context/ContextProvider";
 
 const Pharmacy = () => {
-  const [products, setProducts] = useState([]);
-  const apiUrl = "http://localhost:3000/products/";
-  useEffect(() => {
-    getData(apiUrl).then((data) => setProducts(data));
-  }, []);
+  const { products } = useNewContext();
 
   return (
     <main>

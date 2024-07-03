@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import PrivateRoutes from "./PrivateRoutes";
 import Signin from "../pages/Signin";
 import Login from "../pages/Login";
 import Home from "../pages/Home";
@@ -7,7 +8,6 @@ import Glasses from "../pages/Glasses";
 import Contact from "../pages/Contact";
 import About from "../pages/About";
 import Page404 from "../pages/Page404";
-import PrivateRoutes from "./PrivateRoutes";
 import Admin from "../pages/Admin";
 
 const RoutesApp = () => {
