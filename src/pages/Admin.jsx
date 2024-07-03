@@ -2,16 +2,19 @@ import Input from "../components/ui/Input";
 import Form from "../components/Form";
 import { useRef, useState } from "react";
 import { validar } from "../utils/validaciones";
-import { postData } from "../services/fetch";
+import { postData, putData, deleteData } from "../services/fetch";
 import uuid from "react-uuid";
+import { useNewContext } from "../context/ContextProvider";
+import ProductUD from "../components/ui/ProductUD";
 
 const Admin = () => {
+  const { setUpdate, update, products } = useNewContext();
   const inputName = useRef();
   const inputInfo = useRef();
   const inputPrice = useRef();
   const inputUrl = useRef();
   const [msg, setMsg] = useState();
-  const apiUrl = "http://localhost:3000/products";
+  const apiUrl = "http://localhost:3000/products/";
 
   const addProduct = async (name, info, price, url) => {
     if (validar.vacio(name, info, price, url)) {
@@ -27,11 +30,12 @@ const Admin = () => {
       if (!promise) {
         alert("Ha ocurrido un error, intentelo más tarde");
       }
+      setUpdate(update + 1);
     }
   };
 
   return (
-    <main className="m-4">
+    <main className="py-4 px-4">
       <div>
         <Form
           handleClick={() =>
@@ -63,6 +67,25 @@ const Admin = () => {
           </div>
           <p>{msg}</p>
         </Form>
+      </div>
+      <div className="container px-6 py-10 mx-auto">
+        <ul className="grid grid-cols-2 gap-8 xl:gap-12 sm:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3">
+          {products.map((e) => (
+            <ProductUD
+              deleteHandleClick={async () => {
+                const promise = await deleteData(apiUrl, e.id);
+                if (!promise) {
+                  alert("ha ocurrido un problema, intentelo más tarde");
+                }
+                setUpdate(update + 1);
+              }}
+              key={e.id}
+              name={e.name}
+              price={e.price}
+              url={e.url}
+            />
+          ))}
+        </ul>
       </div>
     </main>
   );
