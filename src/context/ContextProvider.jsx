@@ -1,5 +1,6 @@
 import { useContext, createContext, useState, useEffect } from "react";
 import { getData } from "../services/fetch";
+import { useLocation } from "react-router-dom";
 
 export const Context = createContext();
 // eslint-disable-next-line react-refresh/only-export-components
@@ -9,6 +10,7 @@ export const ContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [session, setSession] = useState();
   const [update, setUpdate] = useState(0);
+  const location = useLocation();
 
   useEffect(() => {
     setSession(sessionStorage.getItem("sessionId") || null);
@@ -16,7 +18,7 @@ export const ContextProvider = ({ children }) => {
   }, [update]);
 
   return (
-    <Context.Provider value={{products, session, setSession, update, setUpdate }}>
+    <Context.Provider value={{products, session, setSession, update, setUpdate, location }}>
       {children}
     </Context.Provider>
   );

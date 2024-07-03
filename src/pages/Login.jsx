@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import Form from "../components/Form";
+import { useState } from "react";
+import Form from "../components/ui/Form";
 import Input from "../components/ui/Input";
 import { Link, useNavigate } from "react-router-dom";
 import { validar } from "../utils/validaciones";
@@ -8,9 +8,9 @@ import { useNewContext } from "../context/ContextProvider.jsx";
 
 const Login = () => {
   ////////////////Variables////////////////
-  const [msj, setMsj] = useState();
-  const inputEmail = useRef();
-  const inputPassword = useRef();
+  const [msj, setMsj] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const apiUrl = "http://localhost:3000/users";
   const navigate = useNavigate();
   const { setUpdate, update } = useNewContext();
@@ -52,13 +52,13 @@ const Login = () => {
             className="flex flex-col gap-2"
             text="Iniciar Sesión"
             handleClick={() =>
-              logIn(inputEmail.current.value, inputPassword.current.value)
+              logIn(email, password)
             }
           >
             <div>
               <label htmlFor="email">Correo:</label>
               <Input
-                inputRef={inputEmail}
+                onChange={(e) => setEmail(e.target.value)}
                 id="email"
                 type="email"
                 placeholder="correo@hotmail.com"
@@ -67,7 +67,7 @@ const Login = () => {
             <div>
               <label htmlFor="password">Contraseña:</label>
               <Input
-                inputRef={inputPassword}
+                onChange={(e) => setPassword(e.target.value)}
                 id="password"
                 type="password"
                 placeholder="••••••••"
