@@ -1,20 +1,21 @@
 import Input from "../components/ui/Input";
 import Form from "../components/ui/Form";
+import Product from "../components/ui/Product";
+import Modal from "../components/ui/Modal";
 import { useState } from "react";
 import { validar } from "../utils/validaciones";
 import { postData, putData, deleteData } from "../services/fetch";
 import uuid from "react-uuid";
 import { useNewContext } from "../context/ContextProvider";
-import Product from "../components/ui/Product";
-import Modal from "../components/ui/Modal";
+import Button from "../components/ui/Button";
 
 const Admin = () => {
-  const { setUpdate, update, products } = useNewContext();
+  const { setUpdate, update, products, glasses } = useNewContext();
 
-  const [name, setName] = useState("");
-  const [info, setInfo] = useState("");
-  const [price, setPrice] = useState("");
-  const [url, setUrl] = useState("");
+  const [inputName, setInputName] = useState("");
+  const [inputInfo, setInputInfo] = useState("");
+  const [inputPrice, setInputPrice] = useState("");
+  const [inputUrl, setInputUrl] = useState("");
 
   const [editName, setEditName] = useState("");
   const [editInfo, setEditInfo] = useState("");
@@ -22,10 +23,19 @@ const Admin = () => {
   const [editUrl, setEditUrl] = useState("");
   const [id, setId] = useState();
 
+  const [modalMsg, setModalMsg] = useState();
   const [msg, setMsg] = useState();
   const [openModal, setOpenModal] = useState(false);
+  const [openModalDos, setOpenModalDos] = useState(false);
+  const [apiUrl, setApiUrl] = useState("http://localhost:3000/products/");
 
-  const apiUrl = "http://localhost:3000/products/";
+  const changeUrl = () => {
+    if (apiUrl === "http://localhost:3000/products/") {
+      setApiUrl("http://localhost:3000/glasses/");
+    } else {
+      setApiUrl("http://localhost:3000/products/");
+    }
+  };
 
   const addProduct = async (name, info, price, url) => {
     if (validar.vacio(name, info, price, url)) {
@@ -45,66 +55,100 @@ const Admin = () => {
     }
   };
 
-  const editProduct = async () => {
-    await putData(apiUrl, id, {
-      name: editName,
-      info: editInfo,
-      price: editPrice,
-      url: editUrl,
-      id: id,
-    });
-    setOpenModal(false);
-    setUpdate(update + 1);
+  const editProduct = async (name, info, price, url) => {
+    if (validar.vacio(name, info, price, url)) {
+      setModalMsg("debe llenar todos los campos");
+    } else {
+      await putData(apiUrl, id, {
+        name: name,
+        info: info,
+        price: price,
+        url: url,
+        id: id,
+      });
+      setOpenModal(false);
+      setUpdate(update + 1);
+    }
   };
 
   return (
     <main className="py-4 px-4">
+      <button onClick={() => changeUrl()}>Cambiar lol</button>
       <div>
         <Form
-          handleClick={() => addProduct(name, info, price, url)}
+          handleClick={() =>
+            addProduct(inputName, inputInfo, inputPrice, inputUrl)
+          }
           text="Agregar"
         >
           <div>
             <label htmlFor="name">Nombre:</label>
-            <Input onChange={(e) => setName(e.target.value)} id="name" />
+            <Input onChange={(e) => setInputName(e.target.value)} id="name" />
           </div>
           <div>
             <label htmlFor="info">Descripción:</label>
-            <Input onChange={(e) => setInfo(e.target.value)} id="info" />
+            <Input onChange={(e) => setInputInfo(e.target.value)} id="info" />
           </div>
           <div>
             <label htmlFor="price">Precio:</label>
-            <Input onChange={(e) => setPrice(e.target.value)} id="price" />
+            <Input onChange={(e) => setInputPrice(e.target.value)} id="price" />
           </div>
           <div>
             <label htmlFor="url">Imagen url:</label>
-            <Input onChange={(e) => setUrl(e.target.value)} id="url" />
+            <Input onChange={(e) => setInputUrl(e.target.value)} id="url" />
           </div>
           <p>{msg}</p>
         </Form>
       </div>
       <div className="container px-6 py-10 mx-auto">
         <ul className="grid grid-cols-2 gap-8 xl:gap-12 sm:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3">
-          {products.map((e) => (
-            <Product
-              key={e.id}
-              name={e.name}
-              price={e.price}
-              url={e.url}
-              deleteClick={async () => {
-                await deleteData(apiUrl, e.id);
-                setUpdate(update + 1);
-              }}
-              editClick={() => {
-                setOpenModal(true);
-                setEditName(e.name);
-                setEditInfo(e.info);
-                setEditPrice(e.price);
-                setEditUrl(e.url);
-                setId(e.id);
-              }}
-            />
-          ))}
+          {apiUrl === "http://localhost:3000/products/" ? (
+            <>
+              {products.map((e) => (
+                <Product
+                  key={e.id}
+                  name={e.name}
+                  price={e.price}
+                  url={e.url}
+                  deleteClick={() => {
+                    setOpenModalDos(true);
+                    setId(e.id);
+                  }}
+                  editClick={() => {
+                    setOpenModal(true);
+                    setEditName(e.name);
+                    setEditInfo(e.info);
+                    setEditPrice(e.price);
+                    setEditUrl(e.url);
+                    setId(e.id);
+                  }}
+                />
+              ))}
+            </>
+          ) : (
+            <>
+              {glasses.map((e) => (
+                <Product
+                  key={e.id}
+                  name={e.name}
+                  price={e.price}
+                  url={e.url}
+                  deleteClick={() => {
+                    setOpenModalDos(true);
+                    setId(e.id);
+                  }}
+                  editClick={() => {
+                    setOpenModal(true);
+                    setEditName(e.name);
+                    setEditInfo(e.info);
+                    setEditPrice(e.price);
+                    setEditUrl(e.url);
+                    setId(e.id);
+                  }}
+                />
+              ))}
+            </>
+          )}
         </ul>
       </div>
 
@@ -114,7 +158,12 @@ const Admin = () => {
         title="Editar producto"
       >
         <div>
-          <Form text="Editar" handleClick={() => editProduct()}>
+          <Form
+            text="Editar"
+            handleClick={() =>
+              editProduct(editName, editInfo, editPrice, editUrl)
+            }
+          >
             <div>
               <label htmlFor="name">Nombre:</label>
               <Input
@@ -147,9 +196,23 @@ const Admin = () => {
                 id="url"
               />
             </div>
-            <p></p>
+            <p>{modalMsg}</p>
           </Form>
         </div>
+      </Modal>
+      <Modal
+        Open={openModalDos}
+        Close={() => setOpenModalDos(false)}
+        title="¿Desea eliminar este producto?"
+      >
+        <Button
+          txt="Eliminar"
+          handleClick={async () => {
+            await deleteData(apiUrl, id);
+            setOpenModalDos(false);
+            setUpdate(update + 1);
+          }}
+        />
       </Modal>
     </main>
   );
