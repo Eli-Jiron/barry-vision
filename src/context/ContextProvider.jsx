@@ -20,7 +20,7 @@ export const ContextProvider = ({ children }) => {
   }, [update]);
 
   return (
-    <Context.Provider value={{products, glasses, session, setSession, update, setUpdate, location }}>
+    <Context.Provider value={{products, glasses, session, location, update, setUpdate }}>
       {children}
     </Context.Provider>
   );
