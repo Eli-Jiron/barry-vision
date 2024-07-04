@@ -1,12 +1,13 @@
 import Input from "../components/ui/Input";
 import Form from "../components/ui/Form";
+import Product from "../components/ui/Product";
+import Modal from "../components/ui/Modal";
 import { useState } from "react";
 import { validar } from "../utils/validaciones";
 import { postData, putData, deleteData } from "../services/fetch";
 import uuid from "react-uuid";
 import { useNewContext } from "../context/ContextProvider";
-import Product from "../components/ui/Product";
-import Modal from "../components/ui/Modal";
+import Button from "../components/ui/Button";
 
 const Admin = () => {
   const { setUpdate, update, products, glasses } = useNewContext();
@@ -25,6 +26,7 @@ const Admin = () => {
   const [modalMsg, setModalMsg] = useState();
   const [msg, setMsg] = useState();
   const [openModal, setOpenModal] = useState(false);
+  const [openModalDos, setOpenModalDos] = useState(false);
   const [apiUrl, setApiUrl] = useState("http://localhost:3000/products/");
 
   const changeUrl = () => {
@@ -108,9 +110,9 @@ const Admin = () => {
                   name={e.name}
                   price={e.price}
                   url={e.url}
-                  deleteClick={async () => {
-                    await deleteData(apiUrl, e.id);
-                    setUpdate(update + 1);
+                  deleteClick={() => {
+                    setOpenModalDos(true);
+                    setId(e.id);
                   }}
                   editClick={() => {
                     setOpenModal(true);
@@ -131,9 +133,9 @@ const Admin = () => {
                   name={e.name}
                   price={e.price}
                   url={e.url}
-                  deleteClick={async () => {
-                    await deleteData(apiUrl, e.id);
-                    setUpdate(update + 1);
+                  deleteClick={() => {
+                    setOpenModalDos(true);
+                    setId(e.id);
                   }}
                   editClick={() => {
                     setOpenModal(true);
@@ -197,6 +199,20 @@ const Admin = () => {
             <p>{modalMsg}</p>
           </Form>
         </div>
+      </Modal>
+      <Modal
+        Open={openModalDos}
+        Close={() => setOpenModalDos(false)}
+        title="¿Desea eliminar este producto?"
+      >
+        <Button
+          txt="Eliminar"
+          handleClick={async () => {
+            await deleteData(apiUrl, id);
+            setOpenModalDos(false);
+            setUpdate(update + 1);
+          }}
+        />
       </Modal>
     </main>
   );
