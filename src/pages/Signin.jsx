@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import Form from "../components/Form";
+import { useState } from "react";
+import Form from "../components/ui/Form";
 import Input from "../components/ui/Input";
 import { getData, postData } from "../services/fetch";
 import { validar } from "../utils/validaciones";
@@ -9,9 +9,9 @@ import uuid from "react-uuid";
 const Signin = () => {
   ////////////////Variables////////////////
   const [msj, setMsj] = useState();
-  const inputUser = useRef();
-  const inputEmail = useRef();
-  const inputPassword = useRef();
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const apiUrl = "http://localhost:3000/users";
   const navigate = useNavigate();
 
@@ -57,18 +57,12 @@ const Signin = () => {
           <Form
             className="flex flex-col gap-2"
             text="Registrarse"
-            handleClick={() =>
-              sigIn(
-                inputUser.current.value,
-                inputEmail.current.value,
-                inputPassword.current.value
-              )
-            }
+            handleClick={() => sigIn(username, email, password)}
           >
             <div>
               <label htmlFor="name">Nombre de usuario:</label>
               <Input
-                inputRef={inputUser}
+                onChange={(e) => setUsername(e.target.value)}
                 id="name"
                 type="text"
                 placeholder="L.Ryuzaki"
@@ -80,7 +74,7 @@ const Signin = () => {
             <div>
               <label htmlFor="email">Correo:</label>
               <Input
-                inputRef={inputEmail}
+                onChange={(e) => setEmail(e.target.value)}
                 id="email"
                 type="email"
                 placeholder="correo@hotmail.com"
@@ -89,7 +83,7 @@ const Signin = () => {
             <div>
               <label htmlFor="password">Contraseña:</label>
               <Input
-                inputRef={inputPassword}
+                onChange={(e) => setPassword(e.target.value)}
                 id="password"
                 type="password"
                 placeholder="••••••••"

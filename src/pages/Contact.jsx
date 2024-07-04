@@ -1,4 +1,4 @@
-import Form from "../components/Form";
+import Form from "../components/ui/Form";
 import Input from "../components/ui/Input";
 
 const Contact = () => {
