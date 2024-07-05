@@ -10,7 +10,7 @@ const Modal = ({ children, Open, Close, title }) => {
           </div>
           <div className="p-4 flex flex-col gap-3">
             {children}
-            <button className="ring-2 ring-red rounded-sm text-red font-semibold py-1 w-full" onClick={Close}>Cancelar</button>
+            <button className="ring-2 ring-red rounded-sm text-red font-semibold py-1 w-full" onClick={Close}>Cerrar</button>
           </div>
         </div>
       </div>

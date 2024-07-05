@@ -1,6 +1,6 @@
 import { useNewContext } from "../../context/ContextProvider";
 
-const Product = (props) => {
+const ProductCard = (props) => {
   const { location } = useNewContext();
 
   return (
@@ -30,4 +30,4 @@ const Product = (props) => {
   );
 };
 
-export default Product;
+export default ProductCard;

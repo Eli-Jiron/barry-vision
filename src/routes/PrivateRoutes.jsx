@@ -1,9 +1,10 @@
 import { Navigate } from "react-router-dom";
+import { useNewContext } from "../context/ContextProvider";
 
 const PrivateRoutes = ({ children }) => {
-  const sessionId = sessionStorage.getItem("sessionId")
+  const { session } = useNewContext();
 
-  if (sessionId) {
+  if (session) {
     return children;
   } else {
     return <Navigate to="/" />;
