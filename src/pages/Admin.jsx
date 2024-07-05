@@ -1,6 +1,6 @@
 import Input from "../components/ui/Input";
 import Form from "../components/ui/Form";
-import Product from "../components/ui/Product";
+import ProductCard from "../components/ui/ProductCard";
 import Modal from "../components/ui/Modal";
 import { useState } from "react";
 import { validar } from "../utils/validaciones";
@@ -105,7 +105,7 @@ const Admin = () => {
           {apiUrl === "http://localhost:3000/products/" ? (
             <>
               {products.map((e) => (
-                <Product
+                <ProductCard
                   key={e.id}
                   name={e.name}
                   price={e.price}
@@ -128,7 +128,7 @@ const Admin = () => {
           ) : (
             <>
               {glasses.map((e) => (
-                <Product
+                <ProductCard
                   key={e.id}
                   name={e.name}
                   price={e.price}

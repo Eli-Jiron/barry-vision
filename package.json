@@ -12,9 +12,10 @@
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-multi-carousel": "^2.8.5",
     "react-router-dom": "^6.24.0",
     "react-uuid": "^2.0.0",
-    "sweetalert2": "^11.12.0"
+    "sweetalert2": "^11.6.13"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",

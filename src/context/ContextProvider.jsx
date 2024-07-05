@@ -8,19 +8,20 @@ export const useNewContext = () => useContext(Context);
 
 export const ContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
-  const [glasses, setGlasses] = useState([])
-  const [session, setSession] = useState();
+  const [glasses, setGlasses] = useState([]);
   const [update, setUpdate] = useState(0);
   const location = useLocation();
+  const session = sessionStorage.getItem("sessionId") || null;
 
   useEffect(() => {
-    setSession(sessionStorage.getItem("sessionId") || null);
     getData("http://localhost:3000/glasses/").then((data) => setGlasses(data));
-    getData("http://localhost:3000/products/").then((data) => setProducts(data));
+    getData("http://localhost:3000/products/").then((data) => setProducts(data)); 
   }, [update]);
 
   return (
-    <Context.Provider value={{products, glasses, session, setSession, update, setUpdate, location }}>
+    <Context.Provider
+      value={{ products, glasses, session, location, update, setUpdate }}
+    >
       {children}
     </Context.Provider>
   );

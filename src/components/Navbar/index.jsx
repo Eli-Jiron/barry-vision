@@ -1,34 +1,65 @@
 import { Link } from "react-router-dom";
+import { useNewContext } from "../../context/ContextProvider";
 
 const Navbar = () => {
-  const hoverStyle =
-    "hover:text-light-green hover:border-b-light-green hover:border-b-2";
+  const { location } = useNewContext();
+
   return (
     <nav className="border-b-2 border-b-ice-blue h-7 drop-shadow-sm">
       <div>
         <ul className="flex justify-center gap-5 font-semibold">
           <li>
-            <Link className={hoverStyle} to="/">
+            <Link
+              className={`${
+                location.pathname === "/" &&
+                "text-light-green border-b-2 border-b-light-green"
+              } hover:text-light-green hover:border-b-light-green hover:border-b-2`}
+              to="/"
+            >
               Inicio
             </Link>
           </li>
           <li>
-            <Link className={hoverStyle} to="/pharmacy">
+            <Link
+              className={`${
+                location.pathname === "/pharmacy" &&
+                "text-light-green border-b-2 border-b-light-green"
+              } hover:text-light-green hover:border-b-light-green hover:border-b-2`}
+              to="/pharmacy"
+            >
               Farmacia
             </Link>
           </li>
           <li>
-            <Link className={hoverStyle} to="/glasses">
+            <Link
+              className={`${
+                location.pathname === "/glasses" &&
+                "text-light-green border-b-2 border-b-light-green"
+              } hover:text-light-green hover:border-b-light-green hover:border-b-2`}
+              to="/glasses"
+            >
               Lentes
             </Link>
           </li>
           <li>
-            <Link className={hoverStyle} to="/about-us">
+            <Link
+              className={`${
+                location.pathname === "/about-us" &&
+                "text-light-green border-b-2 border-b-light-green"
+              } hover:text-light-green hover:border-b-light-green hover:border-b-2`}
+              to="/about-us"
+            >
               Sobre nosotros
             </Link>
           </li>
           <li>
-            <Link className={hoverStyle} to="/contact">
+            <Link
+              className={`${
+                location.pathname === "/contact" &&
+                "text-light-green border-b-2 border-b-light-green"
+              } hover:text-light-green hover:border-b-light-green hover:border-b-2`}
+              to="/contact"
+            >
               Contactenos
             </Link>
           </li>

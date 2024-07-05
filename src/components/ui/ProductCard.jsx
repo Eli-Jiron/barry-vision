@@ -1,6 +1,6 @@
 import { useNewContext } from "../../context/ContextProvider";
 
-const Product = (props) => {
+const ProductCard = (props) => {
   const { location } = useNewContext();
 
   return (
@@ -15,7 +15,7 @@ const Product = (props) => {
             />
             <p className="my-4 pl-4 font-bold text-light-green">{props.name}</p>
             <p className="mb-4 ml-4 text-xl font-semibold text-blue-gray-700">
-              {`₡ ${props.price}`}
+              {`₡${props.price}`}
             </p>
             {location.pathname === "/admin" && (
               <div className="flex justify-center gap-3">
@@ -30,4 +30,4 @@ const Product = (props) => {
   );
 };
 
-export default Product;
+export default ProductCard;
