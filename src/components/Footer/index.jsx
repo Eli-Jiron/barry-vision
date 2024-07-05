@@ -1,4 +1,8 @@
 import { Link } from "react-router-dom";
+import personIcon from "../../assets/personIcon.svg";
+import phoneIcon from "../../assets/phoneIcon.svg";
+import bookIcon from "../../assets/bookIcon.svg";
+import clockIcon from "../../assets/clockIcon.svg";
 
 const Footer = () => {
   return (
@@ -14,11 +18,7 @@ const Footer = () => {
           </div>
           <div className="flex flex-col items-center">
             <div className="flex gap-3">
-              <img
-                className="h-8"
-                src="https://autumn.revolt.chat/attachments/zC1UIFriAUVX5MJE6dHfxE2E3NSplPkUlAT8NXD4ao/call_24dp_FILL0_wght400_GRAD0_opsz24.png"
-                alt="icon"
-              />
+              <img src={phoneIcon} alt="icon" />
               <h3 className=" text-xl font-semibold">Contactanos</h3>
             </div>
             <ul className="text-center">
@@ -32,11 +32,7 @@ const Footer = () => {
           </div>
           <div className="flex flex-col items-center">
             <div className="flex gap-3">
-              <img
-                className="h-8"
-                src="https://autumn.revolt.chat/attachments/pH-j6cRC9hdq9JqFJJavbytNR9dQdmcATGc-vOuubs/person_add_24dp_FILL0_wght400_GRAD0_opsz24.png"
-                alt="icon"
-              />
+              <img src={personIcon} alt="icon" />
               <h3 className="text-xl font-semibold">Seguinos</h3>
             </div>
             <ul className="text-center">
@@ -53,11 +49,7 @@ const Footer = () => {
           </div>
           <div className="flex flex-col items-center">
             <div className="flex gap-3">
-              <img
-                className="h-8"
-                src="https://autumn.revolt.chat/attachments/9wNYWLn7n1o7T1LPuoWhPpxF1wkipgCr0msmajctzc"
-                alt="icon"
-              />
+              <img src={bookIcon} alt="icon" />
               <h3 className="text-xl font-semibold">Legal</h3>
             </div>
             <ul className="text-center">
@@ -71,11 +63,7 @@ const Footer = () => {
           </div>
           <div className="flex flex-col items-center">
             <div className="flex gap-3">
-              <img
-                className="h-8"
-                src="https://autumn.revolt.chat/attachments/qS3o_oS5mNMPKIo9r6hS-5vWSA29LFqeJAsBEisJxR"
-                alt="icon"
-              />
+              <img src={clockIcon} alt="icon" />
               <h3 className="text-xl font-semibold">Horarios de atención</h3>
             </div>
             <ul className="text-center">
