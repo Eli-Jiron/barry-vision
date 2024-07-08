@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <footer className="bg-blue-gray-900 text-white mt-auto">
       <div className="flex flex-col flex-wrap gap-2 px-5 py-6 mx-auto md:items-center md:flex-no-wrap">
-        <div className="w-full flex flex-col gap-5 md:justify-around md:flex-row md:gap-0 border-b-2 border-b-blue-gray-600">
+        <div className="w-full flex flex-col gap-5 md:justify-around md:flex-row md:gap-0 border-b-2 border-b-blue-gray-800">
           <div className="flex justify-center">
             <img
               className="w-auto h-14"

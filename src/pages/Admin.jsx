@@ -111,11 +111,11 @@ const Admin = () => {
                   price={e.price}
                   url={e.url}
                   deleteClick={() => {
-                    setOpenModalDos(true);
+                    setOpenModalDos(!openModalDos);
                     setId(e.id);
                   }}
                   editClick={() => {
-                    setOpenModal(true);
+                    setOpenModal(!openModal);
                     setEditName(e.name);
                     setEditInfo(e.info);
                     setEditPrice(e.price);
@@ -134,11 +134,11 @@ const Admin = () => {
                   price={e.price}
                   url={e.url}
                   deleteClick={() => {
-                    setOpenModalDos(true);
+                    setOpenModalDos(!openModalDos);
                     setId(e.id);
                   }}
                   editClick={() => {
-                    setOpenModal(true);
+                    setOpenModal(!openModal);
                     setEditName(e.name);
                     setEditInfo(e.info);
                     setEditPrice(e.price);
@@ -154,7 +154,7 @@ const Admin = () => {
 
       <Modal
         Open={openModal}
-        Close={() => setOpenModal(false)}
+        Close={() => setOpenModal(!openModal)}
         title="Editar producto"
       >
         <div>
@@ -202,7 +202,7 @@ const Admin = () => {
       </Modal>
       <Modal
         Open={openModalDos}
-        Close={() => setOpenModalDos(false)}
+        Close={() => setOpenModalDos(!openModalDos)}
         title="¿Desea eliminar este producto?"
       >
         <Button
