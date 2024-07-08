@@ -1,6 +1,6 @@
+import { Link } from "react-router-dom";
 import ProductCarousel from "../components/ProductCarousel/";
 import CarouselCard from "../components/ui/CarouselCard";
-import ProductCard from "../components/ui/ProductCard";
 import { useNewContext } from "../context/ContextProvider";
 
 const Home = () => {
@@ -8,19 +8,60 @@ const Home = () => {
 
   return (
     <main>
-      <ProductCarousel>
-        {products.map((e) => {
-          return (
-            <CarouselCard key={e.id} name={e.name} url={e.url} info={e.info} price={e.price} />
-          )
-        })}
-      </ProductCarousel>
-      <div className="container px-6 py-10 mx-auto">
-        <ul className="grid grid-cols-2 gap-8 xl:gap-12 sm:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3">
-          {products.map((e) => (
-            <ProductCard key={e.id} name={e.name} price={e.price} url={e.url} />
-          ))}
-        </ul>
+      <div>
+        <div className="flex justify-center my-4 mx-1 bg-light-green">
+          <h2 className="text-white font-semibold text-2xl my-1">
+            Productos en oferta.
+          </h2>
+        </div>
+        <div>
+          <div>
+            <div className="flex justify-between items-center mx-4 bg-blue-gray-800">
+              <h3 className="text-white font-semibold text-lg my-1 ml-2">
+                Medicamentos
+              </h3>
+              <Link className="text-white font-semibold mr-2" to="/pharmacy">
+                ver más →
+              </Link>
+            </div>
+            <ProductCarousel>
+              {products.map((e) => {
+                return (
+                  <CarouselCard
+                    key={e.id}
+                    name={e.name}
+                    url={e.url}
+                    info={e.info}
+                    price={e.price}
+                  />
+                );
+              })}
+            </ProductCarousel>
+          </div>
+          <div>
+            <div className="flex justify-between items-center mx-4 bg-blue-gray-800">
+              <h4 className="text-white font-semibold text-lg my-1 ml-2">
+                Lentes
+              </h4>
+              <Link className="text-white font-semibold mr-2" to="/glasses">
+                ver más →
+              </Link>
+            </div>
+            <ProductCarousel>
+              {glasses.map((e) => {
+                return (
+                  <CarouselCard
+                    key={e.id}
+                    name={e.name}
+                    url={e.url}
+                    info={e.info}
+                    price={e.price}
+                  />
+                );
+              })}
+            </ProductCarousel>
+          </div>
+        </div>
       </div>
     </main>
   );
