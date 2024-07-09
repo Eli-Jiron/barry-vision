@@ -14,6 +14,7 @@ export const ContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [glasses, setGlasses] = useState([]);
   const [update, setUpdate] = useState(0);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
   const session = sessionStorage.getItem("sessionId") || null;
   const updateSize = () =>
@@ -32,7 +33,7 @@ export const ContextProvider = ({ children }) => {
 
   return (
     <Context.Provider
-      value={{ products, glasses, session, location, size, update, setUpdate }}
+      value={{ products, glasses, session, location, size, sidebarOpen, setSidebarOpen, update, setUpdate }}
     >
       {children}
     </Context.Provider>

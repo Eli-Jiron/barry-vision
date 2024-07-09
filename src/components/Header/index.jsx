@@ -1,10 +1,8 @@
-import Sidebar from "../Sidebar";
-import { useState } from "react";
 import hamburgerIcon from "../../assets/hamburgerIcon.svg";
+import { useNewContext } from "../../context/ContextProvider";
 
 const Header = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
+  const { sidebarOpen, setSidebarOpen  } = useNewContext();
   return (
     <>
       <header className="bg-light-green">
@@ -23,7 +21,6 @@ const Header = () => {
           </div>
         </div>
       </header>
-      <Sidebar Open={sidebarOpen} Close={() => setSidebarOpen(!sidebarOpen)} />
     </>
   );
 };
