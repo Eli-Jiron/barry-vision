@@ -27,7 +27,7 @@ const Contact = () => {
           </div>
         </div>
         <div className="flex justify-center bg-blue-gray-700 rounded-lg w-2/3">
-          <div className="flex flex-col md:flex-row items-center gap-10 m-12">
+          <div className="flex flex-col lg:flex-row items-center gap-10 m-12">
             <h2 className="text-2xl text-white font-semibold">
               Información de contacto
             </h2>
