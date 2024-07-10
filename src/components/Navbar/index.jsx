@@ -48,12 +48,12 @@ const Navbar = () => {
           <li>
             <Link
               className={`${
-                location.pathname === "/about-us" &&
+                location.pathname === "/eye-test" &&
                 "text-light-green border-b-2 border-b-light-green"
               } hover:text-light-green hover:border-b-light-green hover:border-b-2`}
-              to="/about-us"
+              to="/eye-test"
             >
-              Sobre nosotros
+              Examen de la vista
             </Link>
           </li>
           <li>
