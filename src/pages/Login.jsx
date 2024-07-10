@@ -25,7 +25,7 @@ const Login = () => {
     } else {
       const promise = await getData(apiUrl);
       if (!promise) {
-        alert("Ha ocurrido un error, intentelo más tarde");
+        setMsj("Ha ocurrido un error, intentelo más tarde");
       } else {
         const data = promise.find(
           (e) => e.email === email && e.password === password

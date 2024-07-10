@@ -1,4 +1,4 @@
-const CarouselCard = ({ url, name, info, price, discount = 17 }) => {
+const CarouselCard = ({ url, name, info, price, discount}) => {
   return (
     <div className="mx-auto my-8 w-72 transform overflow-hidden rounded-lg bg-white  shadow-md duration-300 hover:scale-105 hover:shadow-lg">
       <img

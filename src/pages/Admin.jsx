@@ -16,10 +16,12 @@ const Admin = () => {
   const [inputInfo, setInputInfo] = useState("");
   const [inputPrice, setInputPrice] = useState("");
   const [inputUrl, setInputUrl] = useState("");
+  const [inputDiscount, setInputDiscount] = useState(0);
 
   const [editName, setEditName] = useState("");
   const [editInfo, setEditInfo] = useState("");
   const [editPrice, setEditPrice] = useState("");
+  const [editDiscount, setEditDiscount] = useState("")
   const [editUrl, setEditUrl] = useState("");
   const [id, setId] = useState();
 
@@ -30,43 +32,58 @@ const Admin = () => {
   const [apiUrl, setApiUrl] = useState("http://localhost:3000/products/");
 
   const changeUrl = () => {
-    if (apiUrl === "http://localhost:3000/products/") {
-      setApiUrl("http://localhost:3000/glasses/");
-    } else {
-      setApiUrl("http://localhost:3000/products/");
-    }
+    apiUrl === "http://localhost:3000/products/"
+      ? setApiUrl("http://localhost:3000/glasses/")
+      : setApiUrl("http://localhost:3000/products/");
   };
 
-  const addProduct = async (name, info, price, url) => {
-    if (validar.vacio(name, info, price, url)) {
+  const addProduct = async (name, info, price, discount, url) => {
+    if (validar.vacio(name, info, price, discount, url)) {
       setMsg("Debe completar todos lo campos");
+    } else if (validar.numeros(price, discount)) {
+      setMsg("No se pueden ingresar valores negativos");
+    } else if (discount > 95) {
+      setMsg("El descuento no puede ser mayor a 95%");
+    } else if (price == 0) {
+      setMsg("El precio debe ser mayor a 0");
     } else {
       const promise = await postData(apiUrl, {
         name: name,
         info: info,
         price: price,
+        discount: discount,
         url: url,
         id: uuid(),
       });
       if (!promise) {
-        alert("Ha ocurrido un error, intentelo más tarde");
+        setMsg("Ha ocurrido un error, intentelo más tarde");
       }
       setUpdate(update + 1);
     }
   };
 
-  const editProduct = async (name, info, price, url) => {
-    if (validar.vacio(name, info, price, url)) {
-      setModalMsg("debe llenar todos los campos");
+  const editProduct = async (name, info, price, discount, url) => {
+    if (validar.vacio(name, info, price, discount, url)) {
+      setModalMsg("Debe completar todos lo campos");
+    } else if (validar.numeros(price, discount)) {
+      setModalMsg("No se pueden ingresar valores negativos");
+    } else if (discount > 95) {
+      setModalMsg("El descuento no puede ser mayor a 95%");
+    } else if (price == 0) {
+      setModalMsg("El precio debe ser mayor a 0");
     } else {
-      await putData(apiUrl, id, {
+      const promise = await putData(apiUrl, id, {
         name: name,
         info: info,
         price: price,
+        discount: discount,
         url: url,
         id: id,
       });
-      setOpenModal(false);
+      if (!promise) {
+        setModalMsg("Ha ocurrido un error, intentelo más tarde");
+      }
+      setOpenModal(!openModal);
       setUpdate(update + 1);
     }
   };
@@ -77,25 +94,56 @@ const Admin = () => {
       <div>
         <Form
           handleClick={() =>
-            addProduct(inputName, inputInfo, inputPrice, inputUrl)
+            addProduct(
+              inputName,
+              inputInfo,
+              inputPrice,
+              inputDiscount,
+              inputUrl
+            )
           }
           text="Agregar"
         >
           <div>
             <label htmlFor="name">Nombre:</label>
-            <Input onChange={(e) => setInputName(e.target.value)} id="name" />
+            <Input
+              type="text"
+              onChange={(e) => setInputName(e.target.value)}
+              id="name"
+            />
           </div>
           <div>
             <label htmlFor="info">Descripción:</label>
-            <Input onChange={(e) => setInputInfo(e.target.value)} id="info" />
+            <Input
+              type="text"
+              onChange={(e) => setInputInfo(e.target.value)}
+              id="info"
+            />
           </div>
           <div>
             <label htmlFor="price">Precio:</label>
-            <Input onChange={(e) => setInputPrice(e.target.value)} id="price" />
+            <Input
+              type="number"
+              onChange={(e) => setInputPrice(e.target.value)}
+              id="price"
+            />
+          </div>
+          <div>
+            <label htmlFor="discount">Descuento:</label>
+            <Input
+              value={inputDiscount}
+              type="number"
+              onChange={(e) => setInputDiscount(e.target.value)}
+              id="discount"
+            />
           </div>
           <div>
             <label htmlFor="url">Imagen url:</label>
-            <Input onChange={(e) => setInputUrl(e.target.value)} id="url" />
+            <Input
+              type="text"
+              onChange={(e) => setInputUrl(e.target.value)}
+              id="url"
+            />
           </div>
           <p>{msg}</p>
         </Form>
@@ -119,6 +167,7 @@ const Admin = () => {
                     setEditName(e.name);
                     setEditInfo(e.info);
                     setEditPrice(e.price);
+                    setEditDiscount(e.discount)
                     setEditUrl(e.url);
                     setId(e.id);
                   }}
@@ -143,6 +192,7 @@ const Admin = () => {
                     setEditInfo(e.info);
                     setEditPrice(e.price);
                     setEditUrl(e.url);
+                    setEditDiscount(e.discount)
                     setId(e.id);
                   }}
                 />
@@ -161,12 +211,12 @@ const Admin = () => {
           <Form
             text="Editar"
             handleClick={() =>
-              editProduct(editName, editInfo, editPrice, editUrl)
+              editProduct(editName, editInfo, editPrice, editDiscount, editUrl)
             }
           >
             <div>
               <label htmlFor="name">Nombre:</label>
-              <Input
+              <Input type="text"
                 value={editName}
                 onChange={(e) => setEditName(e.target.value)}
                 id="name"
@@ -174,7 +224,7 @@ const Admin = () => {
             </div>
             <div>
               <label htmlFor="info">Descripción:</label>
-              <Input
+              <Input type="text"
                 value={editInfo}
                 onChange={(e) => setEditInfo(e.target.value)}
                 id="info"
@@ -182,15 +232,23 @@ const Admin = () => {
             </div>
             <div>
               <label htmlFor="price">Precio:</label>
-              <Input
+              <Input type="number"
                 value={editPrice}
                 onChange={(e) => setEditPrice(e.target.value)}
                 id="price"
               />
             </div>
             <div>
+              <label htmlFor="discount">Descuento:</label>
+              <Input type="number"
+                value={editDiscount}
+                onChange={(e) => setEditDiscount(e.target.value)}
+                id="discount"
+              />
+            </div>
+            <div>
               <label htmlFor="url">Imagen url:</label>
-              <Input
+              <Input type="text"
                 value={editUrl}
                 onChange={(e) => setEditUrl(e.target.value)}
                 id="url"
