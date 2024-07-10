@@ -76,16 +76,16 @@ const Sidebar = () => {
                   </div>
                   <div
                     className={`${
-                      location.pathname === "/about-us" &&
+                      location.pathname === "/eye-test" &&
                       "bg-light-green text-white"
                     } flex rounded-md hover:bg-light-green hover:text-white`}
                   >
                     <Link
                       onClick={() => setSidebarOpen(!sidebarOpen)}
                       className="w-full mx-3 my-1"
-                      to="about-us"
+                      to="/eye-test"
                     >
-                      Sobre nosotros
+                      Examen de la vista
                     </Link>
                   </div>
                   <div
