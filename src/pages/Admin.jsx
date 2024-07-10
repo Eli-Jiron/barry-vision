@@ -16,7 +16,7 @@ const Admin = () => {
   const [inputInfo, setInputInfo] = useState("");
   const [inputPrice, setInputPrice] = useState("");
   const [inputUrl, setInputUrl] = useState("");
-  const [inputDiscount, setInputDiscount] = useState(0);
+  const [inputDiscount, setInputDiscount] = useState("0");
 
   const [editName, setEditName] = useState("");
   const [editInfo, setEditInfo] = useState("");
