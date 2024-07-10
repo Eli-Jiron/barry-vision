@@ -52,15 +52,18 @@ const Home = () => {
             </div>
             <ProductCarousel>
               {glasses.map((e) => {
-                return (
-                  <CarouselCard
-                    key={e.id}
-                    name={e.name}
-                    url={e.url}
-                    info={e.info}
-                    price={e.price}
-                  />
-                );
+                if (e.discount > 0) {
+                  return (
+                    <CarouselCard
+                      key={e.id}
+                      name={e.name}
+                      url={e.url}
+                      info={e.info}
+                      price={e.price}
+                      discount={e.discount}
+                    />
+                  );
+                }
               })}
             </ProductCarousel>
           </div>
