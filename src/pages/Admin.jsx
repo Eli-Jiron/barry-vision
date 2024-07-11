@@ -298,8 +298,8 @@ const Admin = () => {
       >
         <Button
           txt="Eliminar"
-          handleClick={() => {
-            deleteData(apiUrl, id); //elimina el producto
+          handleClick={async () => {
+            await deleteData(apiUrl, id); //elimina el producto
             setOpenModalDos(!openModalDos); //una vez clickeado el boton, cierra el modal
             setUpdate(update + 1);
           }}
