@@ -11,8 +11,9 @@ import AdminCard from "../components/ui/AdminCard";
 import changeIcon from "../assets/changeIcon.svg";
 
 const Admin = () => {
+  ////////////////Contexto////////////////
   const { setUpdate, update, products, glasses } = useNewContext();
-
+  ////////////////Variables////////////////
   const [inputName, setInputName] = useState("");
   const [inputInfo, setInputInfo] = useState("");
   const [inputPrice, setInputPrice] = useState("");
@@ -28,13 +29,13 @@ const Admin = () => {
 
   const [modalMsg, setModalMsg] = useState();
   const [msg, setMsg] = useState();
-  const [openModal, setOpenModal] = useState(false);
-  const [openModalDos, setOpenModalDos] = useState(false);
+  const [openModal, setOpenModal] = useState(false); //variable que controla la apertura del modal
+  const [openModalDos, setOpenModalDos] = useState(false); //variable que controla la apertura del modal
   const [apiUrl, setApiUrl] = useState("http://localhost:3000/products/");
   const [productoTtl, setProductoTtl] = useState("Medicamentos");
-
+  ////////////////Funciones////////////////
   const changeUrl = () => {
-    if (apiUrl === "http://localhost:3000/products/") {
+    if (apiUrl === "http://localhost:3000/products/") { //Cambia el url de la api de productos a la de lentes y viscersa
       setApiUrl("http://localhost:3000/glasses/");
       setProductoTtl("Lentes");
     } else {
@@ -43,7 +44,7 @@ const Admin = () => {
     }
   };
 
-  const addProduct = async (name, info, price, discount, url) => {
+  const addProduct = async (name, info, price, discount, url) => { //Añade pruductos a las apis
     if (validar.vacio(name, info, price, discount, url)) {
       setMsg("Debe completar todos lo campos");
     } else if (validar.numeros(price, discount)) {
@@ -53,7 +54,7 @@ const Admin = () => {
     } else if (price == 0) {
       setMsg("El precio debe ser mayor a 0");
     } else {
-      const promise = await postData(apiUrl, {
+      const promise = await postData(apiUrl, { //pasadas las validaciones, agrega el producto
         name: name,
         info: info,
         price: price,
@@ -68,7 +69,7 @@ const Admin = () => {
     }
   };
 
-  const editProduct = async (name, info, price, discount, url) => {
+  const editProduct = async (name, info, price, discount, url) => { //Edita los productos de la api
     if (validar.vacio(name, info, price, discount, url)) {
       setModalMsg("Debe completar todos lo campos");
     } else if (validar.numeros(price, discount)) {
@@ -78,7 +79,7 @@ const Admin = () => {
     } else if (price == 0) {
       setModalMsg("El precio debe ser mayor a 0");
     } else {
-      const promise = await putData(apiUrl, id, {
+      const promise = await putData(apiUrl, id, { //pasadas las validaciones, edita el producto
         name: name,
         info: info,
         price: price,
@@ -89,7 +90,7 @@ const Admin = () => {
       if (!promise) {
         setModalMsg("Ha ocurrido un error, intentelo más tarde");
       }
-      setOpenModal(!openModal);
+      setOpenModal(!openModal); //cierra el modal
       setUpdate(update + 1);
     }
   };
@@ -179,11 +180,11 @@ const Admin = () => {
                   price={e.price}
                   url={e.url}
                   discount={e.discount}
-                  deleteClick={() => {
+                  deleteClick={() => { //Abre el modal para borrar y hace un set del id de ese elemento
                     setOpenModalDos(!openModalDos);
                     setId(e.id);
                   }}
-                  editClick={() => {
+                  editClick={() => { //Abre el modal para editar y hace un set con todos los valores del elemento
                     setOpenModal(!openModal);
                     setEditName(e.name);
                     setEditInfo(e.info);
@@ -204,11 +205,11 @@ const Admin = () => {
                   price={e.price}
                   url={e.url}
                   discount={e.discount}
-                  deleteClick={() => {
+                  deleteClick={() => { //Abre el modal para borrar y hace un set del id de ese elemento
                     setOpenModalDos(!openModalDos);
                     setId(e.id);
                   }}
-                  editClick={() => {
+                  editClick={() => { //Abre el modal para editar y hace un set con todos los valores del elemento
                     setOpenModal(!openModal);
                     setEditName(e.name);
                     setEditInfo(e.info);
@@ -225,8 +226,8 @@ const Admin = () => {
       </div>
 
       <Modal
-        Open={openModal}
-        Close={() => setOpenModal(!openModal)}
+        Open={openModal} //estado del modal
+        Close={() => setOpenModal(!openModal)} //funcion para cerrar el modal
         title="Editar producto"
       >
         <div>
@@ -291,15 +292,15 @@ const Admin = () => {
         </div>
       </Modal>
       <Modal
-        Open={openModalDos}
-        Close={() => setOpenModalDos(!openModalDos)}
+        Open={openModalDos} //estado del modal
+        Close={() => setOpenModalDos(!openModalDos)} //funcion para cerrar el modal
         title="¿Desea eliminar este producto?"
       >
         <Button
           txt="Eliminar"
-          handleClick={async () => {
-            await deleteData(apiUrl, id);
-            setOpenModalDos(false);
+          handleClick={() => {
+            deleteData(apiUrl, id); //elimina el producto
+            setOpenModalDos(!openModalDos); //una vez clickeado el boton, cierra el modal
             setUpdate(update + 1);
           }}
         />

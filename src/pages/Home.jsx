@@ -55,9 +55,9 @@ const Home = () => {
                   ver más →
                 </Link>
               </div>
-              {products.filter((e) => e.discount > 0).length !== 0 ? (
+              {products.filter((e) => e.discount > 0).length !== 0 ? ( //verifica que hayan productos con descuento
                 <ProductCarousel>
-                  {products.filter((e) => e.discount > 0).map((e) => {
+                  {products.filter((e) => e.discount > 0).map((e) => { //filtra los productos que tiene descuento de los que no y los renderiza
                       return (
                         <CarouselCard
                           key={e.id}
@@ -84,9 +84,9 @@ const Home = () => {
                   ver más →
                 </Link>
               </div>
-              {glasses.filter((e) => e.discount > 0).length !== 0 ? (
+              {glasses.filter((e) => e.discount > 0).length !== 0 ? ( //verifica que hayan productos con descuento
                 <ProductCarousel>
-                  {glasses.filter((e) => e.discount > 0).map((e) => {
+                  {glasses.filter((e) => e.discount > 0).map((e) => { //filtra los productos que tiene descuento de los que no y los renderiza
                       return (
                         <CarouselCard
                           key={e.id}

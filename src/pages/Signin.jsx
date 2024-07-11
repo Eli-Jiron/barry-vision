@@ -30,14 +30,14 @@ const Signin = () => {
       if (!promise) {
         setMsj("Ha ocurrido un error, intentelo más tarde");
       } else {
-        const findUser = promise.find((e) => e.user === user);
-        const findEmail = promise.find((e) => e.email === email);
+        const findUser = promise.find((e) => e.user === user); //verifica que el nombre de usuario no exista aun
+        const findEmail = promise.find((e) => e.email === email); //verifica que el correo no exista aun
         if (findUser) {
           setMsj("Nombre de usuario no disponible");
         } else if (findEmail) {
           setMsj("Correo no disponible");
         } else {
-          await postData(apiUrl, {
+          await postData(apiUrl, { //Una vez pasadas las validaciones, sube los datos del registro a la api de usuario
             user: user,
             email: email,
             password: password,

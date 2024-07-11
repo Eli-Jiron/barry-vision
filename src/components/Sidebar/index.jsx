@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useNewContext } from "../../context/ContextProvider";
 
 const Sidebar = () => {
-  const { session, size, sidebarOpen, setSidebarOpen } = useNewContext();
+  const { session, size, sidebarOpen, setSidebarOpen } = useNewContext(); //varibles exportadas del contextProvider
   return (
     <>
       <div
