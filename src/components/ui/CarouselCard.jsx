@@ -1,4 +1,4 @@
-const CarouselCard = ({ url, name, info, price, discount }) => {
+const CarouselCard = ({ url, name, price, discount }) => {
   return (
     <div className="mx-auto my-8 w-72 transform overflow-hidden rounded-lg bg-white  shadow-md duration-300 hover:scale-105 hover:shadow-lg">
       <img
@@ -8,7 +8,6 @@ const CarouselCard = ({ url, name, info, price, discount }) => {
       />
       <div className="p-4">
         <h2 className="mb-2 text-lg font-medium text-light-green">{name}</h2>
-        <p className="mb-2 text-base text-blue-gray-600">{info}</p>
         <div className="flex items-center gap-2">
           <div>
             {discount > 0 && (

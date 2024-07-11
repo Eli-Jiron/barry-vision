@@ -1,8 +1,4 @@
-import { useNewContext } from "../../context/ContextProvider";
-
 const ProductCard = (props) => {
-  const { location } = useNewContext();
-
   return (
     <>
       <li>
@@ -15,7 +11,7 @@ const ProductCard = (props) => {
             />
             <div className="py-2 px-2">
               <p className=" font-bold text-light-green">{props.name}</p>
-              <div className="flex justify-between gap-3">
+              <div className="flex items-center gap-3 mt-1">
                 <div>
                   {props.discount > 0 && (
                     <p className="text-base font-semibold text-blue-gray-700">
@@ -42,20 +38,12 @@ const ProductCard = (props) => {
                         )}`}
                       </p>
                     </div>
-                    <div className="flex items-center">
-                      <p className="flex justify-center items-center h-9 w-9 bg-red rounded-full  ml-auto text-sm font-semibold text-white">
-                        {`-${props.discount}%`}
-                      </p>
-                    </div>
+                    <p className="flex justify-center items-center h-12 w-12 bg-red rounded-full ml-auto text-sm font-semibold text-white">
+                      {`-${props.discount}%`}
+                    </p>
                   </>
                 )}
               </div>
-              {location.pathname === "/admin" && (
-                <div className="flex justify-center gap-3">
-                  <button onClick={props.editClick}>Editar</button>
-                  <button onClick={props.deleteClick}>Eliminar</button>
-                </div>
-              )}
             </div>
           </div>
         </div>
