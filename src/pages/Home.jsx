@@ -55,22 +55,25 @@ const Home = () => {
                   ver más →
                 </Link>
               </div>
-              <ProductCarousel>
-                {products.map((e) => {
-                  if (e.discount > 0) {
-                    return (
-                      <CarouselCard
-                        key={e.id}
-                        name={e.name}
-                        url={e.url}
-                        info={e.info}
-                        price={e.price}
-                        discount={e.discount}
-                      />
-                    );
-                  }
-                })}
-              </ProductCarousel>
+              {products.filter((e) => e.discount > 0).length !== 0 ? (
+                <ProductCarousel>
+                  {products.filter((e) => e.discount > 0).map((e) => {
+                      return (
+                        <CarouselCard
+                          key={e.id}
+                          name={e.name}
+                          url={e.url}
+                          price={e.price}
+                          discount={e.discount}
+                        />
+                      );
+                    })}
+                </ProductCarousel>
+              ) : (
+                <h1 className="text-2xl font-semibold text-center py-24">
+                  No hay ofertas en este momento :c
+                </h1>
+              )}
             </div>
             <div>
               <div className="flex justify-between items-center mx-4 bg-blue-gray-800">
@@ -81,22 +84,25 @@ const Home = () => {
                   ver más →
                 </Link>
               </div>
-              <ProductCarousel>
-                {glasses.map((e) => {
-                  if (e.discount > 0) {
-                    return (
-                      <CarouselCard
-                        key={e.id}
-                        name={e.name}
-                        url={e.url}
-                        info={e.info}
-                        price={e.price}
-                        discount={e.discount}
-                      />
-                    );
-                  }
-                })}
-              </ProductCarousel>
+              {glasses.filter((e) => e.discount > 0).length !== 0 ? (
+                <ProductCarousel>
+                  {glasses.filter((e) => e.discount > 0).map((e) => {
+                      return (
+                        <CarouselCard
+                          key={e.id}
+                          name={e.name}
+                          url={e.url}
+                          price={e.price}
+                          discount={e.discount}
+                        />
+                      );
+                    })}
+                </ProductCarousel>
+              ) : (
+                <h1 className="text-2xl font-semibold text-center py-24">
+                  No hay ofertas en este momento :c
+                </h1>
+              )}
             </div>
           </div>
         </div>
