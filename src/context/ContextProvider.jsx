@@ -7,14 +7,14 @@ export const Context = createContext();
 export const useNewContext = () => useContext(Context);
 
 export const ContextProvider = ({ children }) => {
-  const [size, setSize] = useState({
+  const [size, setSize] = useState({ //obtiene el tamaño de la ventana del usuario
     width: window.innerWidth,
     height: window.innerHeight,
   });
   const [products, setProducts] = useState([]);
   const [glasses, setGlasses] = useState([]);
-  const [update, setUpdate] = useState(0);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [update, setUpdate] = useState(0); //variable que actualiza el useEffect
+  const [sidebarOpen, setSidebarOpen] = useState(false); // variable que controla la apertura del sidebar
   const location = useLocation();
   const session = sessionStorage.getItem("sessionId") || null;
   const updateSize = () =>
@@ -33,7 +33,7 @@ export const ContextProvider = ({ children }) => {
 
   return (
     <Context.Provider
-      value={{ products, glasses, session, location, size, sidebarOpen, setSidebarOpen, update, setUpdate }}
+      value={{ products, glasses, session, location, size, sidebarOpen, setSidebarOpen, update, setUpdate }} //exporta todos los valores para ser usados de forma global entre componentes
     >
       {children}
     </Context.Provider>

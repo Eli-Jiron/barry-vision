@@ -27,11 +27,11 @@ const Login = () => {
       if (!promise) {
         setMsj("Ha ocurrido un error, intentelo más tarde");
       } else {
-        const data = promise.find(
+        const data = promise.find( //busca el la api un usuario que coincida con la información ingresada
           (e) => e.email === email && e.password === password
         );
         if (data) {
-          sessionStorage.setItem("sessionId", data.id);
+          sessionStorage.setItem("sessionId", data.id); //guarda el id de ese usuario en el sessionStorage
           setUpdate(update + 1);
           navigate("/");
         } else {

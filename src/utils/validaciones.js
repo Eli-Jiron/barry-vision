@@ -1,5 +1,5 @@
 export const validar = {
-  vacio: (...inputs) => { //validación de los campos vacíos
+  vacio: (...inputs) => { //validación para evitar inputs con contenido vacío
     let result = false;
     inputs.forEach((e) => {
       if (e.trim() === "") {
@@ -8,7 +8,7 @@ export const validar = {
     });
     return result;
   },
-  espacios: (...inputs) => { //validación de espacios
+  espacios: (...inputs) => { //validación para impedir el ingreso de espacios
     let result = false;
     inputs.forEach((e) => {
       if (!/^\S*$/.test(e)) {
